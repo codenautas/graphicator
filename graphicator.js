@@ -61,13 +61,8 @@ var buildChartParamsFunctions = {
 var buildProgressChartParams = function (elementId, matrix, type) {
     //TODO: change to typescript and refactor to es6 and validate browser support (Set, arrow functions)
     var xTitles = ['x'].concat(matrix.columns.map(x => getUniqueArrayElement(x.titles, 'matrix.columns[*].titles')));
-    var lineVarName = getUniqueArrayElement(matrix.lineVariables, 'matrix.lineVariables');
-    var dataVarName = getUniqueArrayElement(matrix.dataVariables, 'matrix.dataVariables');
-    var rowsForChart = matrix.lines.map(x => {
-        var firstElem = (type == 'line') ? lineVarName + ' ' : '';
-        firstElem += getUniqueArrayElement(x.titles, 'matrix.lines[*].titles');
-        return [firstElem].concat(x.cells.map(c => (c && c.valor) || ''));
-    });
+    var rowsForChart = matrix.lines.map(x => [getUniqueArrayElement(x.titles, 'matrix.lines[*].titles')].concat(x.cells.map(c => (c && c.valor) || '')));
+    //TODO: separate logic for construction of group option 
     var groups = (type == 'bar') ? [rowsForChart.map(x => x[0] /*first element is the name */)] : false;
     var chartParameters = {
         data: {
@@ -75,8 +70,31 @@ var buildProgressChartParams = function (elementId, matrix, type) {
             columns: [xTitles].concat(rowsForChart),
             type: type,
             groups: groups,
+        },
+        axis: {
+            x: {
+                label: {
+                    text: getUniqueArrayElement(matrix.columnVariables, 'matrix.columnVariables'),
+                    position: 'outer-center'
+                }
+            },
+            y: {
+                label: {
+                    text: getUniqueArrayElement(matrix.dataVariables, 'matrix.dataVariables'),
+                    position: 'outer-middle'
+                },
+                min:0
+            }
+        },
+        grid: {
+            x: {
+                show: true
+            },
+            y: {
+                show: true
+            }
         }
-    };
+    }
     return chartParameters;
 }
 
