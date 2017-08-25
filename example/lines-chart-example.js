@@ -25,4 +25,4 @@ var datum = {
     ]
 }
 
-renderChart(datum, 'mortalidadChart', 'line');
+renderTabulation(datum, 'mortalidadChart', 'line');

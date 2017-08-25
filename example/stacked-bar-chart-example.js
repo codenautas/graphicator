@@ -23,4 +23,4 @@ var datum = {
         { sexo: 'mujer', año: 2017, valor: 2920 },
     ]
 }
-renderChart(datum, 'adopcionesChart', 'bar');
+renderTabulation(datum, 'adopcionesChart', 'bar');

@@ -1,28 +1,37 @@
 /*
 * Logic for transformation from Tabulator toMatrix function data to c3js charts required data
 */
-
 "use strict";
 
 var Tabulator = require('tabulator');
 var tabulator = new Tabulator();
 tabulator.defaultShowAttribute = 'valor';
 
-var renderChart = function (datum, elementId, type) {
+var renderTabulation = function (datum, elementId, type) {
     var matrix = tabulator.toMatrix(datum);
     renderTable(elementId, matrix);
-    var chartParameters = buildChartFunctions[type](elementId, matrix);
-    buildChart(elementId, chartParameters);
+    //chart rendering
+    var chartParameters = buildChartParamsFunctions[type](elementId, matrix);
+    renderChart(elementId, chartParameters);
 }
 
-var buildChartFunctions = {
+var validateOneElementArray = function (arrayVar, varName) {
+    if (arrayVar.constructor === Array && arrayVar.length != 1) {
+        throw new Error(varName + ' must be an array and have only one element');
+    }
+    //pass validation
+}
+
+var getUniqueArrayElement = function (array, varName) {
+    validateOneElementArray(array, varName);
+    return array[0];
+}
+
+var buildChartParamsFunctions = {
     pie: function (elementId, matrix) {
-        if(matrix.dataVariables.length!=1){
-            throw new Error('matrix.dataVariables must have only one element');
-        }
         //TODO: change to typescript and refactor to es6 and validate browser support (Set, arrow functions)
-        var dataVarName = matrix.dataVariables[0];
-        var columns = matrix.columns.map((x, index) => [x.titles[0], matrix.lines[0].cells[index][dataVarName]]);
+        var dataVarName = getUniqueArrayElement(matrix.dataVariables, 'matrix.dataVariables');
+        var columns = matrix.columns.map((x, index) => [getUniqueArrayElement(x.titles, 'matrix.columns[*].titles'), getUniqueArrayElement(matrix.lines, 'matrix.lines').cells[index][dataVarName]]);
         var chartParameters = {
             data: {
                 columns: columns,
@@ -31,7 +40,7 @@ var buildChartFunctions = {
             pie: {
                 label: {
                     format: function (value, ratio, id) {
-                        return d3.format()(parseInt(value)) + ' - ' + d3.format('%')(ratio);
+                        return d3.format()(value);
                     }
                 }
             }
@@ -39,31 +48,31 @@ var buildChartFunctions = {
         return chartParameters;
     },
     bar: function (elementId, matrix) {
-        return buildProgressChart(elementId, matrix, 'bar');
+        return buildProgressChartParams(elementId, matrix, 'bar');
     },
     line: function (elementId, matrix) {
-        return buildProgressChart(elementId, matrix, 'line');
+        return buildProgressChartParams(elementId, matrix, 'line');
     }
 }
 
 /*
-* Common construction for all "progressive" charts (line, bar, stacked bars, etc),  (pie chart isn't a "progressive" chart)
+* Common construction for all "progressive" charts (line, bar, stacked bars, etc),  (for example pie chart isn't a "progressive" chart)
 */
-var buildProgressChart = function (elementId, matrix, type) {
+var buildProgressChartParams = function (elementId, matrix, type) {
     //TODO: change to typescript and refactor to es6 and validate browser support (Set, arrow functions)
-    var xTitles = ['x'].concat(matrix.columns.map(x => x.titles[0]));
-    var lineVarName = matrix.lineVariables[0];
-    var dataVarName = matrix.dataVariables[0];
-    var lines = matrix.lines.map(x => {
+    var xTitles = ['x'].concat(matrix.columns.map(x => getUniqueArrayElement(x.titles, 'matrix.columns[*].titles')));
+    var lineVarName = getUniqueArrayElement(matrix.lineVariables, 'matrix.lineVariables');
+    var dataVarName = getUniqueArrayElement(matrix.dataVariables, 'matrix.dataVariables');
+    var rowsForChart = matrix.lines.map(x => {
         var firstElem = (type == 'line') ? lineVarName + ' ' : '';
-        firstElem += x.titles[0];
-        return [firstElem].concat(x.cells.map(c => c && c[dataVarName]));
+        firstElem += getUniqueArrayElement(x.titles, 'matrix.lines[*].titles');
+        return [firstElem].concat(x.cells.map(c => (c && c.valor) || ''));
     });
-    var groups = (type == 'bar') ? [lines.map(x => x[0])] : false;
+    var groups = (type == 'bar') ? [rowsForChart.map(x => x[0] /*first element is the name */)] : false;
     var chartParameters = {
         data: {
             x: 'x',
-            columns: [xTitles].concat(lines),
+            columns: [xTitles].concat(rowsForChart),
             type: type,
             groups: groups,
         }
@@ -71,7 +80,7 @@ var buildProgressChart = function (elementId, matrix, type) {
     return chartParameters;
 }
 
-var buildChart = function (elementId, chartParameters) {
+var renderChart = function (elementId, chartParameters) {
     var chart = c3.generate(Object.assign({ bindto: '#' + elementId }, chartParameters));
 }
 

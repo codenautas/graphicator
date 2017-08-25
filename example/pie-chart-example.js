@@ -14,4 +14,4 @@ var datum = {
     ]
 }
 
-renderChart(datum, 'poblacionChart', 'pie');
+renderTabulation(datum, 'poblacionChart', 'pie');
