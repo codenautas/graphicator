@@ -1,6 +1,7 @@
 "use strict";
 
-
+var Graphicator = require('graphicator');
+var graphicator = new Graphicator();
 
 var datum = {
     vars: [
@@ -23,4 +24,4 @@ var datum = {
         { sexo: 'mujer', año: 2017, valor: 2920 },
     ]
 }
-renderTabulation(datum, 'adopcionesChart', 'bar');
+graphicator.renderTabulation(datum, 'adopcionesChart', 'bar');

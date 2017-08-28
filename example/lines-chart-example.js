@@ -1,5 +1,8 @@
 "use strict";
 
+var Graphicator = require('graphicator');
+var graphicator = new Graphicator();
+
 var datum = {
     vars: [
         { name: 'comuna', place: 'left' },
@@ -25,4 +28,4 @@ var datum = {
     ]
 }
 
-renderTabulation(datum, 'mortalidadChart', 'line');
+graphicator.renderTabulation(datum, 'mortalidadChart', 'line');
