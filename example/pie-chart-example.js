@@ -1,5 +1,8 @@
 "use strict";
 
+var Graphicator = require('graphicator');
+var graphicator = new Graphicator();
+
 var datum = {
     vars: [
         { name: 'comuna', place: 'left' },
@@ -14,4 +17,4 @@ var datum = {
     ]
 }
 
-renderTabulation(datum, 'poblacionChart', 'pie');
+graphicator.renderTabulation(datum, 'poblacionChart', 'pie');
