@@ -19,16 +19,18 @@ function site_up(req, res) {
         <div id="mortalidadChart2"></div>
         <div id="poblacionChart"></div>
         <div id="adopcionesChart"></div>
+
         <script src='like-ar.js'></script>
         <script src='js-to-html.js'></script>
         <script src='require-bro.js'></script>
         <script src='tabulator.js'></script>
-       
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.16/c3.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.16/c3.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.js"></script>
 
-        <script src='../graphicator.js'></script>
+
+        <script src='../graphicator-typescript-impl.js'></script>
         <script src='lines-chart-example.js'></script> 
         <script src='lines-chart-example2.js'></script> 
         <script src='pie-chart-example.js'></script> 

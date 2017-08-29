@@ -1,7 +1,8 @@
 
 var expect = require('expect.js');
 
-var Graphicator = require('../graphicator.js');
+// var Graphicator = require('../graphicator.js');
+var Graphicator = require('../graphicator-typescript-impl.js');
 
 describe('graphicator', function () {
     var graphicator;
