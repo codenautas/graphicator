@@ -17,19 +17,22 @@
   ],
   "main": "tabulator.js",
   "dependencies": {
-    "c3": "^0.4.17",
-    "d3": "^4.10.2",
+    "@types/c3": "^0.4.44",
     "tabulator": "~0.1.19"
   },
   "devDependencies": {
+    "@types/node": "^8.0.28",
+    "expect-called": "~0.4.0",
+    "expect.js": "~0.3.1",
     "express": "~4.15.4",
     "istanbul": "~0.4.5",
     "mocha": "~3.5.2",
-    "supertest": "~3.0.0",
-    "expect.js": "~0.3.1",
-    "expect-called": "~0.4.0",
     "require-bro": "~0.1.5",
-    "serve-content": "~0.3.8"
+    "serve-content": "~0.3.8",
+    "supertest": "~3.0.0",
+    "webpack": "^3.5.5",
+    "typescript": "^2.5.2",
+    "ts-loader": "^2.3.4"
   },
   "engines": {
     "node": ">= 0.8.0"
@@ -38,6 +41,7 @@
     "test": "mocha --reporter spec --bail --check-leaks test/",
     "test-ci": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter spec --check-leaks test/",
     "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot --check-leaks test/",
-    "start": "node example/server.js"
+    "start": "node example/server.js",
+    "build": "webpack"
   }
 }

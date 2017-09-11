@@ -1,5 +1,3 @@
-"use strict";
-
 var Graphicator = require('graphicator');
 var graphicator = new Graphicator();
 
