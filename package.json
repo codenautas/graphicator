@@ -1,5 +1,5 @@
 {
-  "name": "tabulator",
+  "name": "graphicator",
   "description": "Put data into tables",
   "version": "0.0.1",
   "author": "Codenautas <codenautas@googlegroups.com>",
@@ -18,13 +18,13 @@
   "main": "tabulator.js",
   "dependencies": {
     "c3": "^0.4.17",
-    "d3": "^4.10.0",
+    "d3": "^4.10.2",
     "tabulator": "~0.1.19"
   },
   "devDependencies": {
     "express": "~4.15.4",
     "istanbul": "~0.4.5",
-    "mocha": "~3.5.0",
+    "mocha": "~3.5.2",
     "supertest": "~3.0.0",
     "expect.js": "~0.3.1",
     "expect-called": "~0.4.0",
