@@ -1,5 +1,5 @@
 {
-  "name": "tabulator",
+  "name": "graphicator",
   "description": "Put data into tables",
   "version": "0.0.1",
   "author": "Codenautas <codenautas@googlegroups.com>",
@@ -15,20 +15,27 @@
       "email": "eugenio.arosteguy@gmail.com"
     }
   ],
-  "main": "tabulator.js",
+  "main": "src/graphicator.js",
   "dependencies": {
+    "@types/mocha": "^2.2.43",
+    "c3": "~0.4.17",
     "tabulator": "~0.1.19"
   },
+  "//": "duplicated keys for allow comments",
   "devDependencies": {
-    "express": "~4.15.4",
-    "istanbul": "~0.4.5",
-    "mocha": "~3.5.0",
-    "supertest": "~3.0.0",
+    "mocha": "~3.5.3",
     "expect.js": "~0.3.1",
     "expect-called": "~0.4.0",
-    
+    "istanbul": "~0.4.5",
+    "express": "~4.15.4",
     "require-bro": "~0.1.5",
-    "serve-content": "~0.3.8"
+    "serve-content": "~0.3.8",
+    "typescript": "^2.5.2",
+    "webpack": "^3.5.6",
+    "ts-loader": "^2.3.7",
+    "@types/c3": "~0.4.44",
+    "@types/mocha": "^2.2.43",
+    "@types/node": "^8.0.28"
   },
   "engines": {
     "node": ">= 0.8.0"
@@ -37,6 +44,8 @@
     "test": "mocha --reporter spec --bail --check-leaks test/",
     "test-ci": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter spec --check-leaks test/",
     "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot --check-leaks test/",
-    "start": "node example/server.js"
+    "start": "node serverSideExample/server.js",
+    "build": "webpack",
+    "build-watch":"webpack --watch"
   }
 }
