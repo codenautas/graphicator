@@ -26,8 +26,8 @@ export class Graphicator {
     }
 
     validateOneElementArray(arrayVar: any[], varName: string) {
-        if (arrayVar.constructor !== Array || arrayVar.length != 1) {
-            throw new Error(varName + ' must be an array and have only one element');
+        if (arrayVar.length != 1) {
+            throw new Error(varName + ' must have only one element');
         }
         //pass validation
     }
