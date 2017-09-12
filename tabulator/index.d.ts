@@ -17,6 +17,6 @@ declare class Tabulator {
 /*~ If you want to expose types from your module as well, you can
  *~ place them in this block.
  */
-declare namespace Tabulator {
-    export enum chartType { }
-}
+// declare namespace Tabulator {
+//     export jsToHtml:void { }
+// }

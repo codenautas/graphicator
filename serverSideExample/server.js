@@ -14,20 +14,15 @@ function site_up(req, res) {
     res.send(`
         <link rel="shortcut icon" href="tabulator-ico.png" type="image/png" />
         <link rel="stylesheet" type="text/css" href="example.css"> 
+        <link rel="stylesheet" href="../node_modules/c3/c3.min.css">
+
         <h1>graphicator demo</h1>
         <div id="mortalidadChart"></div>
         <div id="mortalidadChart2"></div>
         <div id="poblacionChart"></div>
         <div id="adopcionesChart"></div>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.16/c3.css">
-
         <script src='../dist/bundle.js'></script>
-        <script src='lines-chart-example.js'></script> 
-        <script src='lines-chart-example2.js'></script> 
-        <script src='pie-chart-example.js'></script> 
-        <script src='stacked-bar-chart-example.js'></script>
-
     `);
 }
 
@@ -36,14 +31,14 @@ function site_up(req, res) {
     'node_modules/js-to-html',
     'node_modules/require-bro/lib',
     'node_modules/tabulator',
-    'example',
+    'serverSideExample',
     ''
 ].forEach(function (jsPath) {
     console.log('colgando ', './' + jsPath, Path.resolve('./' + jsPath));
-    app.use('/', serveContent('./' + jsPath, { allowedExts: ['js','css'] }));
+    app.use('/', serveContent('./' + jsPath, { allowedExts: ['js', 'css'] }));
 });
 
-app.use('/example', serveContent('./', { allowedExts: ['png', 'jpg', 'jpeg', 'css'] }));
+app.use('/serverSideExample', serveContent('./', { allowedExts: ['png', 'jpg', 'jpeg', 'css'] }));
 
 app.get('/index.html', site_up);
 app.get('/', site_up);
