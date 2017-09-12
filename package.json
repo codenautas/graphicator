@@ -45,6 +45,7 @@
     "test-ci": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter spec --check-leaks test/",
     "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot --check-leaks test/",
     "start": "node serverSideExample/server.js",
-    "build": "webpack"
+    "build": "webpack",
+    "build-watch":"webpack --watch"
   }
 }

@@ -1,6 +1,6 @@
 1. clonar repo
 2. $ npm install
-3. $ npm run build 
+3. $ npm run build (o build-watch para que transpile ts ante algún cambio)
 
 Para abrir el ejemplo client side:
 1. abrir directamente el archivo clientSideExample/index.html con el navegador

@@ -1,6 +1,12 @@
-import {Graphicator, chartType} from './graphicator';
-var graphicator:Graphicator = new Graphicator();
-var datum:object;
+import {Graphicator} from './graphicator';
+import {LineChartGraphicator} from "./linechart";
+import {BarChartGraphicator} from "./barchart";
+import {PieChartGraphicator} from "./piechart";
+
+let datum:object;
+let graphicator:Graphicator;
+
+//#########################
 
 datum = {
     vars: [
@@ -27,11 +33,10 @@ datum = {
     ]
 }
 
-graphicator.renderTabulation(datum, 'mortalidadChart', chartType.LINE);
+graphicator = new LineChartGraphicator('mortalidadChart', datum);
+graphicator.renderTabulation();
 
 //#########################
-
-graphicator = new Graphicator();
 
 datum = {
     vars: [
@@ -51,11 +56,10 @@ datum = {
     ]
 }
 
-graphicator.renderTabulation(datum, 'mortalidadChart2', chartType.LINE);
+graphicator = new LineChartGraphicator('mortalidadChart2', datum);
+graphicator.renderTabulation();
 
 //#########################
-
-graphicator = new Graphicator();
 
 datum = {
     vars: [
@@ -71,11 +75,11 @@ datum = {
     ]
 }
 
-graphicator.renderTabulation(datum, 'poblacionChart', chartType.PIE);
+graphicator = new PieChartGraphicator('poblacionChart', datum);
+graphicator.renderTabulation();
 
 //#########################
 
-graphicator = new Graphicator();
 
 datum = {
     vars: [
@@ -98,4 +102,6 @@ datum = {
         { sexo: 'mujer', año: 2017, valor: 2920 },
     ]
 }
-graphicator.renderTabulation(datum, 'adopcionesChart', chartType.BAR);
+
+graphicator = new BarChartGraphicator('adopcionesChart', datum);
+graphicator.renderTabulation();

@@ -1,18 +1,18 @@
-
-var expect = require('expect.js');
+let expect = require('expect.js');
 
 import { Graphicator } from "../src/graphicator";
+import { LineChartGraphicator } from "../src/linechart";
 
 describe('graphicator', function () {
-    var graphicator: Graphicator;
+    let graphicator: Graphicator;
     beforeEach(function () {
-        graphicator = new Graphicator();
+        // graphicator = new LineChartGraphicator();
     });
     describe('validateOneElementArray', function () {
-        var twoElemArray: any[];
-        var oneElemArray: any[];
-        var emptyArray: any[];
-        var arrayName: string;
+        let twoElemArray: any[];
+        let oneElemArray: any[];
+        let emptyArray: any[];
+        let arrayName: string;
         beforeEach(function () {
             emptyArray = [];
             twoElemArray = [3, 'asdf'];
