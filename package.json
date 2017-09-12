@@ -15,24 +15,27 @@
       "email": "eugenio.arosteguy@gmail.com"
     }
   ],
-  "main": "tabulator.js",
+  "main": "src/graphicator.js",
   "dependencies": {
-    "@types/c3": "^0.4.44",
+    "@types/mocha": "^2.2.43",
+    "c3": "~0.4.17",
     "tabulator": "~0.1.19"
   },
+  "//": "duplicated keys for allow comments",
   "devDependencies": {
-    "@types/node": "^8.0.28",
-    "expect-called": "~0.4.0",
+    "mocha": "~3.5.3",
     "expect.js": "~0.3.1",
-    "express": "~4.15.4",
+    "expect-called": "~0.4.0",
     "istanbul": "~0.4.5",
-    "mocha": "~3.5.2",
+    "express": "~4.15.4",
     "require-bro": "~0.1.5",
     "serve-content": "~0.3.8",
-    "supertest": "~3.0.0",
-    "webpack": "^3.5.5",
     "typescript": "^2.5.2",
-    "ts-loader": "^2.3.4"
+    "webpack": "^3.5.6",
+    "ts-loader": "^2.3.7",
+    "@types/c3": "~0.4.44",
+    "@types/mocha": "^2.2.43",
+    "@types/node": "^8.0.28"
   },
   "engines": {
     "node": ">= 0.8.0"

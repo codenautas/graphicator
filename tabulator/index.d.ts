@@ -12,7 +12,6 @@ declare class Tabulator {
     defaultShowAttribute: string;
     toMatrix(datum: object): object;
     toHtmlTable(matrix: object): any;
-
 }
 
 /*~ If you want to expose types from your module as well, you can
