@@ -1,7 +1,6 @@
 let expect = require('expect.js');
 
 import { Graphicator } from "../src/graphicator";
-import { LineChartGraphicator } from "../src/linechart";
 
 describe('graphicator', function () {
     let graphicator: Graphicator;

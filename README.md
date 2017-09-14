@@ -10,7 +10,7 @@ Para abrir el ejemplo server side:
 2. navegar localhost:3000
 
 Para transpilar el código (con cada modificación de archivos .ts) volver a ejecutar 
-$ npm run build 
+$ npm run build (o build-watch)
 
 Para instalar el archivo declaración de una librería externa
 $ npm install --save @types/c3

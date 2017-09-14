@@ -12,7 +12,7 @@ export class PieChartGraphicator extends Graphicator {
             },
             pie: {
                 label: {
-                    format: function (value: any, ratio: any, id: any) {
+                    format: function (value: any) {
                         return d3.format('')(value);
                     }
                 }

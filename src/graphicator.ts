@@ -7,7 +7,7 @@ import * as c3 from 'c3';
 
 export abstract class Graphicator {
 
-    tabulator: any;
+    tabulator: tabulatorLib;
     elementIdToRender: string;
     matrix: object;
 
