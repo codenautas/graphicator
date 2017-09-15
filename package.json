@@ -41,7 +41,9 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "test": "mocha --reporter spec --bail --check-leaks test/",
+    "test": "npm run build-test && npm run mocha-test",
+    "build-test": "tsc test/graphicator-test.ts",
+    "mocha-test": "mocha --reporter spec --bail --check-leaks test/",
     "test-ci": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter spec --check-leaks test/",
     "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot --check-leaks test/",
     "start": "node serverSideExample/server.js",

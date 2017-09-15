@@ -1,3 +1,7 @@
+#test now require run transpiler individually
+src/*.js
+test/*.js
+
 # bundle
 dist
 

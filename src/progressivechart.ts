@@ -1,4 +1,5 @@
 import { Graphicator } from "./graphicator";
+import { Utils } from "./utils";
 
 export abstract class ProgressiveChartGraphicator extends Graphicator {
 
@@ -12,7 +13,7 @@ export abstract class ProgressiveChartGraphicator extends Graphicator {
     * Common construction for all "progressive" charts (line, bar, stacked bars, etc),  (for example pie chart isn't a "progressive" chart)
      */
     getBaseChartParams(matrix: any, rowsForChart: string[][]): c3.ChartConfiguration {
-        const xTitles = ['x'].concat(matrix.columns.map((x: any) => this.getUniqueArrayElement(x.titles, 'matrix.columns[*].titles')));
+        const xTitles = ['x'].concat(matrix.columns.map((x: any) => Utils.getUniqueArrayElement(x.titles, 'matrix.columns[*].titles')));
         return {
             data: {
                 x: 'x',
@@ -21,13 +22,13 @@ export abstract class ProgressiveChartGraphicator extends Graphicator {
             axis: {
                 x: {
                     label: {
-                        text: this.getUniqueArrayElement(matrix.columnVariables, 'matrix.columnVariables'),
+                        text: Utils.getUniqueArrayElement(matrix.columnVariables, 'matrix.columnVariables'),
                         position: 'outer-center'
                     }
                 },
                 y: {
                     label: {
-                        text: this.getUniqueArrayElement(matrix.dataVariables, 'matrix.dataVariables'),
+                        text: Utils.getUniqueArrayElement(matrix.dataVariables, 'matrix.dataVariables'),
                         position: 'outer-middle'
                     },
                     min: 0
