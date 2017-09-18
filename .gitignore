@@ -3,7 +3,6 @@ src/*.js
 test/*.js
 
 # bundle
-dist
 
 # Logs
 logs
@@ -60,4 +59,3 @@ jspm_packages/
 
 # dotenv environment variables file
 .env
-
