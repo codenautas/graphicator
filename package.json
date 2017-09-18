@@ -3,6 +3,7 @@
   "description": "Draw chart from 'tabulator' tables",
   "version": "0.2.0",
   "author": "Codenautas <codenautas@googlegroups.com>",
+  "main": "./dist/bundle.js",
   "types": "./dist/d.ts/src",
   "license": "MIT",
   "repository": "codenautas/graphicator",
