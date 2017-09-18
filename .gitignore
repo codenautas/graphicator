@@ -3,6 +3,7 @@ src/*.js
 test/*.js
 
 # bundle
+dist
 
 # Logs
 logs
