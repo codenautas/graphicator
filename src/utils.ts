@@ -1,5 +1,5 @@
 // TODO: move to "utils library"
-export class Utils{
+export class Utils {
     static validateOneElementArray(arrayVar: any[], varName: string) {
         if (arrayVar.length != 1) {
             throw new Error(varName + ' must have only one element');

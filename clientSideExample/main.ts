@@ -1,7 +1,7 @@
-import {Graphicator} from './graphicator';
-import {LineChartGraphicator} from "./linechart";
-import {BarChartGraphicator} from "./barchart";
-import {PieChartGraphicator} from "./piechart";
+import {Graphicator} from '../src/graphicator';
+import {LineChartGraphicator} from "../src/linechart";
+import {BarChartGraphicator} from "../src/barchart";
+import {PieChartGraphicator} from "../src/piechart";
 
 let datum:object;
 let graphicator:Graphicator;

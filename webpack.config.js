@@ -1,10 +1,13 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/main.ts',
+  entry: {
+    index: './src/index.ts', 
+    main: './clientSideExample/main.ts'
+  },
   devtool: 'inline-source-map',
   output: {
-    filename: 'bundle.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist')
   },
   resolve: {
@@ -24,5 +27,5 @@ module.exports = {
     //   // all files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'
     //   { test: /\.ts$/, loader: "ts-loader" }
     // ],
-  } 
+  }
 };

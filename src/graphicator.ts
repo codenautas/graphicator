@@ -2,7 +2,7 @@
 * Logic for transformation from Tabulator toMatrix function data to c3js charts required data
 */
 
-var Tabulator = require('tabulator'); // since Tabulator is a webpack wrapped umd 
+var Tabulator = require('tabulator'); // since Tabulator is a umd module
 import * as c3 from 'c3';
 
 export abstract class Graphicator {

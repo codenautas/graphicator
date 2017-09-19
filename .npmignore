@@ -1,2 +1,5 @@
 src
 tsconfig.json
+webpack.config.js
+dist/clientSideExample
+dist/main.js
