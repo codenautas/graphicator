@@ -1,7 +1,7 @@
 {
   "name": "graphicator",
   "description": "Draw chart from 'tabulator' tables",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "author": "Codenautas <codenautas@googlegroups.com>",
   "main": "./dist/index.js",
   "types": "./dist/src",
