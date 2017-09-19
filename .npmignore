@@ -1,7 +1,7 @@
-src
+./src
 tsconfig.json
 webpack.config.js
-clientSideExample
-dist/clientSideExample
-dist/main.js
+./clientSideExample
+./dist/clientSideExample
+./dist/main.js
 *.js.map
