@@ -1,7 +1,5 @@
-./src
+.gitignore
+clientSideExample
 tsconfig.json
 webpack.config.js
-./clientSideExample
-./dist/clientSideExample
-./dist/main.js
 *.js.map

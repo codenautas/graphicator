@@ -12,7 +12,7 @@
         "noImplicitReturns": true, /* Report error when not all code paths in function return a value. */
         "noFallthroughCasesInSwitch": true,
          "declaration": true,
-        // "declarationDir": "../d.ts",
+         "declarationDir": "./types",
         "preserveConstEnums": true
     }
 }
