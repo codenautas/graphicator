@@ -5,7 +5,7 @@ module.exports = {
     index: './src/index.ts', 
     main: './clientSideExample/main.ts'
   },
-  devtool: 'inline-source-map',
+  devtool: 'eval-source-map',
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist')
