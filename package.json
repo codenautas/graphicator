@@ -1,7 +1,7 @@
 {
   "name": "graphicator",
   "description": "Draw chart from 'tabulator' tables",
-  "version": "0.17.0",
+  "version": "0.18.0",
   "author": "Codenautas <codenautas@googlegroups.com>",
   "main": "./dist/index.js",
   "types": "./dist/types/src",
@@ -9,20 +9,16 @@
   "repository": "codenautas/graphicator",
   "contributors": [
     {
-      "name": "Emilio Platzer",
-      "email": "emilioplatzer@gmail.com"
-    },
-    {
       "name": "Eugenio Arosteguy",
       "email": "eugenio.arosteguy@gmail.com"
     }
   ],
   "dependencies": {
     "c3": "~0.4.17",
+    "tabulator": "~0.1.19",
     "@types/c3": "~0.4.44",
-    "tabulator": "~0.1.19"
+    "@types/tabulator": "^0.1.0"
   },
-  "//": "duplicated keys for allow comments",
   "devDependencies": {
     "mocha": "~3.5.3",
     "expect.js": "~0.3.1",
