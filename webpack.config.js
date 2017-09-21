@@ -1,14 +1,13 @@
 const path = require('path');
 
 module.exports = {
-  entry: {
-    index: './src/index.ts', 
-    main: './clientSideExample/main.ts'
-  },
-  devtool: 'eval-source-map',
+  entry: './src/index.ts',
+  devtool: 'inline-source-map',
   output: {
-    filename: '[name].js',
-    path: path.resolve(__dirname, 'dist')
+    filename: 'index.js',
+    path: path.resolve(__dirname, 'dist'),
+    libraryTarget: "umd",
+    library: "GraphicatorLib"
   },
   resolve: {
     // Add '.ts' and '.tsx' as a resolvable extension.
