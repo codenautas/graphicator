@@ -1,6 +1,18 @@
 "use strict";
 
+this.tabulator = new Tabulator();
+this.tabulator.defaultShowAttribute = 'valor';
+
+// TODO: move to tabulator?
+function renderTableInElement(elementId, matrix) {
+    let element = document.getElementById(elementId);
+    element.innerHTML = "";
+    const table = this.tabulator.toHtmlTable(this.matrix);
+    element.parentNode.insertBefore(table.create(), element);
+}
+
 var datum;
+var matrix;
 var graphicator;
 //#########################
 datum = {
@@ -27,8 +39,12 @@ datum = {
         { comuna: 4, año: 2017, valor: 2920 },
     ]
 };
-graphicator = new GraphicatorLib.LineChartGraphicator('mortalidadChart', datum)
+
+matrix = tabulator.toMatrix(datum);
+renderTableInElement('mortalidadChart', matrix);
+graphicator = new LineChartGraphicator('mortalidadChart', matrix);
 graphicator.renderTabulation();
+
 //#########################
 datum = {
     vars: [
@@ -47,8 +63,12 @@ datum = {
         { "tipoDeHacinamiento": "no hacinadas", año: 2015, valor: 84.3 },
     ]
 };
-graphicator = new GraphicatorLib.LineChartGraphicator('mortalidadChart2', datum);
+
+matrix = tabulator.toMatrix(datum);
+renderTableInElement('mortalidadChart2', matrix);
+graphicator = new LineChartGraphicator('mortalidadChart2', datum);
 graphicator.renderTabulation();
+
 //#########################
 datum = {
     vars: [
@@ -63,7 +83,9 @@ datum = {
         { comuna: 'Total', rangoEdad: '15-17', valor: 92.521 },
     ]
 };
-graphicator = new GraphicatorLib.PieChartGraphicator('poblacionChart', datum);
+matrix = tabulator.toMatrix(datum);
+renderTableInElement('poblacionChart', matrix);
+graphicator = new PieChartGraphicator('poblacionChart', datum);
 graphicator.renderTabulation();
 //#########################
 datum = {
@@ -87,5 +109,7 @@ datum = {
         { sexo: 'mujer', año: 2017, valor: 2920 },
     ]
 };
-graphicator = new GraphicatorLib.BarChartGraphicator('adopcionesChart', datum);
+matrix = tabulator.toMatrix(datum);
+renderTableInElement('poblacionChart', matrix);
+graphicator = new BarChartGraphicator('adopcionesChart', datum);
 graphicator.renderTabulation();
