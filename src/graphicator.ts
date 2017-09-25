@@ -22,7 +22,6 @@ export abstract class Graphicator {
     abstract buildChartParams(matrix: any): c3.ChartConfiguration;
 
     renderTabulation() {
-        this.renderTableInElement();
         this.renderChart(this.buildChartParams(this.matrix));
     }
 
@@ -30,11 +29,4 @@ export abstract class Graphicator {
         c3.generate({ bindto: '#' + this.elementIdToRender, ...chartParameters });
     }
 
-    // TODO: move to tabulator?
-    renderTableInElement() {
-        let element = document.getElementById(this.elementIdToRender);
-        element.innerHTML = "";
-        const table = this.tabulator.toHtmlTable(this.matrix);
-        element.parentNode.insertBefore(table.create(), element);
-    }
 };
