@@ -2,31 +2,16 @@
 * Logic for transformation from Tabulator toMatrix function data to c3js charts required data
 */
 
-// var Tabulator = require('tabulator'); // since Tabulator is a umd module
-import Tabulator = require('tabulator');
 import * as c3 from 'c3';
 
 export abstract class Graphicator {
 
-    tabulator: Tabulator;
-    elementIdToRender: string;
-    matrix: object;
-
-    constructor(elementId: string, datum: object) {
-        this.tabulator = new Tabulator();
-        this.tabulator.defaultShowAttribute = 'valor';
-        this.matrix = this.tabulator.toMatrix(datum);
-        this.elementIdToRender = elementId;
+    constructor(public elementIdToRender: string, public matrix: any) {
     }
 
-    abstract buildChartParams(matrix: any): c3.ChartConfiguration;
+    abstract buildChartParams(): c3.ChartConfiguration;
 
     renderTabulation() {
-        this.renderChart(this.buildChartParams(this.matrix));
+        c3.generate({ bindto: '#' + this.elementIdToRender, ...this.buildChartParams() });
     }
-
-    renderChart(chartParameters: c3.ChartConfiguration) {
-        c3.generate({ bindto: '#' + this.elementIdToRender, ...chartParameters });
-    }
-
 };
