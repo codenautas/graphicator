@@ -16,13 +16,13 @@ export abstract class SerialChartGraphicator extends Graphicator {
             axis: {
                 x: {
                     label: {
-                        text: Utils.getUniqueArrayElement(this.matrix.columnVariables, 'matrix.columnVariables'),
+                        text: this.matrix.vars[Utils.getUniqueArrayElement(this.matrix.columnVariables, 'matrix.columnVariables')].label,
                         position: 'outer-center'
                     }
                 },
                 y: {
                     label: {
-                        text: Utils.getUniqueArrayElement(this.matrix.dataVariables, 'matrix.dataVariables'),
+                        text: Utils.getUniqueArrayElement(this.matrix.dataVariables, 'matrix.dataVariables') + ' por ' + this.matrix.vars[Utils.getUniqueArrayElement(this.matrix.lineVariables, 'be.matrix.lineVariables')].label,
                         position: 'outer-middle'
                     },
                     min: 0

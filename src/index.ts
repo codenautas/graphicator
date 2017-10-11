@@ -5,4 +5,4 @@ export {BarChartGraphicator} from "./barchart";
 export {LineChartGraphicator} from "./linechart";
 export {Utils} from "./utils";
 
-//TODO carefully the API and expose just it, start hidden Utils
+//TODO define carefully the API and expose just it, start hidden Utils
