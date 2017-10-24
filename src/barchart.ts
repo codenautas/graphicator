@@ -7,7 +7,7 @@ export class BarChartGraphicator extends SerialChartGraphicator {
     */
     buildChartParams(): c3.ChartConfiguration {
         let chartParameters: c3.ChartConfiguration = this.getBaseChartParams('bar');
-        chartParameters.data.columns.splice(1,1);//removing total
+        chartParameters.data.columns.splice(1, 1); //in grouped bar charts we don't want the total data (second array element)
         return chartParameters;
     }
 }
