@@ -12,7 +12,7 @@ export abstract class SerialChartGraphicator extends Graphicator {
             let lineTitle = Utils.getUniqueArrayElement(line.titles, 'matrix.lines[*].titles');
             let lineVariable = Utils.getUniqueArrayElement(be.matrix.lineVariables, 'be.matrix.lineVariables');
             let lineLabel = be.matrix.vars[lineVariable].values[lineTitle].label;
-            return [lineLabel].concat(line.cells.map((c: any) => (c && c.valor) || ''));
+            return [lineLabel].concat(line.cells.map((c: any) => (c && c.valor) || null));
         });
 
         //hack for years descending order: negate years
