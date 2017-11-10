@@ -14,9 +14,7 @@ export abstract class SerialChartGraphicator extends Graphicator {
             let lineLabel = be.matrix.vars[lineVariable].values[lineTitle].label;
             return [lineLabel].concat(line.cells.map((c: any) => (c && c.valor) || null));
         });
-
-        //hack for years descending order: negate years
-        const xTitles = ['x'].concat(this.matrix.columns.map((x: any) => -Utils.getUniqueArrayElement(x.titles, 'matrix.columns[*].titles')));
+        const xTitles = ['x'].concat(this.matrix.columns.map((x: any) => x.titles.slice(-1)[0]));//Utils.getUniqueArrayElement(x.titles, 'matrix.columns[*].titles')));
         return {
             data: {
                 x: 'x',
@@ -25,14 +23,6 @@ export abstract class SerialChartGraphicator extends Graphicator {
                 groups: [rowsForChart.map((x: any[]) => x[0] /*first element is the name */)],
             },
             axis: {
-                x: {
-                    //hack for years descending order: negate years again for show with correct sign
-                    tick: { 
-                        format: function (x) {
-                          return -x;
-                        }
-                      }
-                },
                 y: {
                     min: 0
                 }
