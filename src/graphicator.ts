@@ -3,6 +3,7 @@
 */
 
 import * as c3 from 'c3';
+import * as bg from 'best-globals';
 
 export abstract class Graphicator {
 
@@ -11,7 +12,8 @@ export abstract class Graphicator {
 
     abstract buildChartParams(): c3.ChartConfiguration;
 
-    renderTabulation(config: c3.ChartConfiguration) {
-        c3.generate({ bindto: '#' + this.elementIdToRender, ...this.buildChartParams(), ...config });
+    renderTabulation(userConfig: c3.ChartConfiguration) {
+        var finalConfig:c3.ChartConfiguration = bg.changing(bg.changing({ bindto: '#' + this.elementIdToRender}, this.buildChartParams()), userConfig||{});
+        c3.generate(finalConfig);
     }
 };

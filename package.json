@@ -1,7 +1,7 @@
 {
   "name": "graphicator",
   "description": "Draw chart from 'tabulator' tables",
-  "version": "0.26.0",
+  "version": "0.26.1",
   "author": "Codenautas <codenautas@googlegroups.com>",
   "main": "./dist/index.js",
   "types": "./dist/types/src",
@@ -15,7 +15,8 @@
   ],
   "dependencies": {
     "c3": "~0.4.17",
-    "@types/c3": "~0.4.44"
+    "@types/c3": "~0.4.44",
+    "best-globals": "~0.10.2"
   },
   "devDependencies": {
     "mocha": "~3.5.3",
