@@ -11,7 +11,7 @@ export abstract class Graphicator {
 
     abstract buildChartParams(): c3.ChartConfiguration;
 
-    renderTabulation() {
-        c3.generate({ bindto: '#' + this.elementIdToRender, ...this.buildChartParams() });
+    renderTabulation(config: c3.ChartConfiguration) {
+        c3.generate({ bindto: '#' + this.elementIdToRender, ...this.buildChartParams(), ...config });
     }
 };
