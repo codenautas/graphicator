@@ -19,12 +19,17 @@ export abstract class SerialChartGraphicator extends Graphicator {
             data: {
                 x: 'x',
                 columns: [xTitles].concat(rowsForChart),
-                type: type,
-                groups: [rowsForChart.map((x: any[]) => x[0] /*first element is the name */)],
+                type: type
             },
             axis: {
                 y: {
                     min: 0
+                },
+                x:{
+                    tick:{
+                        //si una columna tiene mas de un título tomo el primero
+                        values: this.matrix.columns.map((x: any) => x.titles.slice(-1)[0])
+                    }
                 }
             },
             grid: {
