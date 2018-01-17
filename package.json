@@ -1,7 +1,7 @@
 {
   "name": "graphicator",
   "description": "Draw chart from 'tabulator' tables",
-  "version": "0.26.3",
+  "version": "0.26.4",
   "author": "Codenautas <codenautas@googlegroups.com>",
   "main": "./dist/index.js",
   "types": "./dist/types/src",
@@ -14,20 +14,18 @@
     }
   ],
   "dependencies": {
-    "c3": "~0.4.17",
-    "@types/c3": "~0.4.44",
-    "best-globals": "~0.10.2"
+    "c3": "~0.4.18",
+    "@types/c3": "~0.4.49",
+    "best-globals": "~0.10.4"
   },
   "devDependencies": {
-    "mocha": "~3.5.3",
+    "mocha": "~4.1.0",
     "expect.js": "~0.3.1",
-    "expect-called": "~0.4.0",
-    "istanbul": "~0.4.5",
-    "typescript": "^2.5.2",
-    "webpack": "^3.5.6",
-    "ts-loader": "^2.3.7",
-    "@types/mocha": "^2.2.43",
-    "@types/node": "^8.0.28"
+    "typescript": "^2.6.2",
+    "webpack": "^3.10.0",
+    "ts-loader": "^3.2.0",
+    "@types/mocha": "^2.2.46",
+    "@types/node": "^9.3.0"
   },
   "engines": {
     "node": ">= 0.8.0"
