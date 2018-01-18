@@ -15,23 +15,32 @@ export abstract class SerialChartGraphicator extends Graphicator {
             return [lineLabel].concat(line.cells.map((c: any) => (c && c.valor) || null));
         });
         const xTitles = ['x'].concat(this.matrix.columns.map((x: any) => x.titles.slice(-1)[0]));//Utils.getUniqueArrayElement(x.titles, 'matrix.columns[*].titles')));
+
         return {
             data: {
                 x: 'x',
                 columns: [xTitles].concat(rowsForChart),
-                type: type
+                type: type,
+                groups: []
             },
             axis: {
                 y: {
-                    min: 0
+                    min: 0,
+                    padding: { bottom: 0 },
+                    // padding: this.minYValue<=0?{bottom: 0}:null,
                 },
-                x:{
-                    tick:{
+                x: {
+                    tick: {
                         //si una columna tiene mas de un título tomo el primero
-                        values: this.matrix.columns.map((x: any) => x.titles.slice(-1)[0])
+                        // values: this.matrix.columns.map((x: any) => x.titles.slice(-1)[0])
+                        culling: false
                     }
                 }
             },
+            // order undefined es igual a no definirlo
+            // tooltip:{
+            //     order: undefined
+            // },
             grid: {
                 x: {
                     show: true
