@@ -14,14 +14,14 @@ export abstract class SerialChartGraphicator extends Graphicator {
             let lineLabel = be.matrix.vars[lineVariable].values[lineTitle].label;
             return [lineLabel].concat(line.cells.map((c: any) => (c && c.valor) || null));
         });
-        const xTitles = ['x'].concat(this.matrix.columns.map((x: any) => x.titles.slice(-1)[0]));//Utils.getUniqueArrayElement(x.titles, 'matrix.columns[*].titles')));
+        const xTitles = ['x'].concat(this.matrix.columns.map((x: any) => x.titles.slice(-1)[0])); //Utils.getUniqueArrayElement(x.titles, 'matrix.columns[*].titles')));
 
         return {
             data: {
                 x: 'x',
                 columns: [xTitles].concat(rowsForChart),
                 type: type,
-                groups: []
+                order: null
             },
             axis: {
                 y: {
@@ -37,16 +37,13 @@ export abstract class SerialChartGraphicator extends Graphicator {
                     }
                 }
             },
-            // order undefined es igual a no definirlo
-            // tooltip:{
-            //     order: undefined
-            // },
             grid: {
                 x: {
                     show: true
                 },
                 y: {
-                    show: true
+                    show: true,
+                    lines: [{value: 0, class: 'zeroAxis'}] //assigning css class to 0 value in axis Y
                 }
             }
         }

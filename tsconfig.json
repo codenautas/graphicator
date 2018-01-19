@@ -11,8 +11,8 @@
         "noUnusedParameters": true,
         "noImplicitReturns": true, /* Report error when not all code paths in function return a value. */
         "noFallthroughCasesInSwitch": true,
-         "declaration": true,
-         "declarationDir": "./types",
+        "declaration": true,
+        "declarationDir": "./types",
         "preserveConstEnums": true
     }
 }

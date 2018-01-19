@@ -26,10 +26,10 @@ export abstract class Graphicator {
         return (minCellValue < 0 ? minCellValue : (2 * minCellValue - max > 0 ? 2 * minCellValue - max : 0)); // acomoda el 0 automáticamente, si los datos útiles ocupan menos de la mitad cambio el 0        
     }
 
-    abstract buildChartParams(): c3.ChartConfiguration;
+    abstract buildDefaultChartParams(): c3.ChartConfiguration;
 
     renderTabulation(userConfig: c3.ChartConfiguration) {
-        var finalConfig: c3.ChartConfiguration = bg.changing(bg.changing({ bindto: '#' + this.elementIdToRender }, this.buildChartParams()), userConfig || {});
+        var finalConfig: c3.ChartConfiguration = bg.changing(bg.changing({ bindto: '#' + this.elementIdToRender }, this.buildDefaultChartParams()), userConfig || {});
         c3.generate(finalConfig);
     }
 };

@@ -3,7 +3,10 @@ src/*.js
 test/*.js
 
 # bundle
-dist
+test/dist
+dist/*
+!dist/graphicator.css
+##TODO: put graphicator.css outside dist folder and ignore all dist folder
 
 # Logs
 logs
