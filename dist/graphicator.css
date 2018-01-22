@@ -6,3 +6,7 @@
     stroke: black;
     stroke-width: 1 px;
 }
+
+.c3-axis.c3-axis-x path{
+    stroke-opacity: 0;
+}

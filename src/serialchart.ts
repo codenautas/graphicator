@@ -21,11 +21,11 @@ export abstract class SerialChartGraphicator extends Graphicator {
                 x: 'x',
                 columns: [xTitles].concat(rowsForChart),
                 type: type,
+                // -                groups: [rowsForChart.map((x: any[]) => x[0] /*first element is the name */)],
                 order: null
             },
             axis: {
                 y: {
-                    min: 0,
                     padding: { bottom: 0 },
                     // padding: this.minYValue<=0?{bottom: 0}:null,
                 },
