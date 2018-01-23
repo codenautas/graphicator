@@ -1,11 +1,11 @@
-import { Graphicator } from './graphicator';
+import { BaseChart } from './basechart';
 import { Utils } from './utils';
 import * as d3 from 'd3';
 import * as bg from 'best-globals';
 
-export class PieChartGraphicator extends Graphicator {
+export class PieChart extends BaseChart {
 
-    static defaultC3Config: c3.ChartConfiguration = bg.changing(Graphicator.defaultC3Config, {
+    static defaultC3Config: c3.ChartConfiguration = bg.changing(BaseChart.defaultC3Config, {
         data: {
             type: 'pie', //default type
         },

@@ -1,6 +1,6 @@
-import { SerialChartGraphicator } from './serialchart';
+import { SerialChart } from './serialchart';
 
-export class BarChartGraphicator extends SerialChartGraphicator {
+export class BarChart extends SerialChart {
 
     processGraphicatorConfig(){
         super.processGraphicatorConfig();

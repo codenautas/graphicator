@@ -1,19 +1,18 @@
-import { Graphicator } from "./graphicator";
 import * as bg from 'best-globals';
 import { Utils } from "./utils";
 
 import { Column, Line } from "./matrix";
+import { BaseChart } from "./basechart";
 
 /*
 * Common construction for all "serial" charts (line, bar, stacked bars, etc),  (for example pie chart isn't a "serial" chart)
  */
-export abstract class SerialChartGraphicator extends Graphicator {
+export abstract class SerialChart extends BaseChart {
 
-    static defaultC3Config: c3.ChartConfiguration = bg.changing(Graphicator.defaultC3Config,{
+    static defaultC3Config: c3.ChartConfiguration = bg.changing(BaseChart.defaultC3Config,{
         data: {
             x: 'x',
             type: 'line',
-            order: null
         },
         axis: {
             y: {
@@ -38,7 +37,6 @@ export abstract class SerialChartGraphicator extends Graphicator {
             }
         }
     });
-
 
     processGraphicatorConfig() {
         super.processGraphicatorConfig();

@@ -1,11 +1,10 @@
-import { SerialChartGraphicator } from './serialchart';
+import { SerialChart } from './serialchart';
 import { Line, Cell } from './matrix';
 
-export class LineChartGraphicator extends SerialChartGraphicator {
+export class LineChart extends SerialChart {
 
     // same config than serial chart
-    // static defaultC3Config: c3.ChartConfiguration = bg.changing(SerialChartGraphicator.defaultC3Config, {
-
+    // static defaultC3Config: c3.ChartConfiguration = bg.changing(SerialChart.defaultC3Config, {
     // })
 
     processGraphicatorConfig(){
