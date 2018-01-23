@@ -16,8 +16,7 @@ export abstract class SerialChart extends BaseChart {
         },
         axis: {
             y: {
-                // padding: { bottom: 0 }, //serial chart
-                // padding: this.minYValue<=0?{bottom: 0}:null,
+                padding: { bottom: 0 },
             },
             x: {
                 tick: {
@@ -43,7 +42,7 @@ export abstract class SerialChart extends BaseChart {
 
         this.config.c3Config.data.groups = this.config.apilado? [this.getRowsForChart().map((x: any[]) => x[0] /*first element is the name */)]: undefined; 
         this.config.c3Config.axis.x.label= { position: 'outer-center', text: this.getMatrix().vars[this.getMatrix().columnVariables[0]].label };
-        this.config.c3Config.axis.y.label = { position: 'outer-middle', text: this.config.um };        
+        this.config.c3Config.axis.y.label = { position: 'outer-middle', text: this.config.um }; 
     }
     
     processValues(): any {

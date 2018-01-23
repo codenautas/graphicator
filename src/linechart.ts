@@ -1,15 +1,16 @@
 import { SerialChart } from './serialchart';
-import { Line, Cell } from './matrix';
 
 export class LineChart extends SerialChart {
 
-    // same config than serial chart
     // static defaultC3Config: c3.ChartConfiguration = bg.changing(SerialChart.defaultC3Config, {
     // })
 
     processGraphicatorConfig(){
         super.processGraphicatorConfig()
-        this.config.c3Config.axis.y.min = this.calcularMinimo(); // line chart only
+
+        let minYValue = this.calcularMinimo()
+        this.config.c3Config.axis.y.min = minYValue; // line chart only
+        if (minYValue > 0) this.config.c3Config.grid.y.lines[0].value = minYValue;
     }
 
     private calcularMinimo(): number {
