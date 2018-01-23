@@ -5,31 +5,59 @@
 import * as c3 from 'c3';
 import * as bg from 'best-globals';
 
+import { Matrix } from './matrix';
+import { GeneralConfig } from './graph-configuration';
+
+import { LineChartGraphicator } from './linechart';
+import { BarChartGraphicator } from './barchart';
+import { PieChartGraphicator } from './piechart';
+
 export abstract class Graphicator {
-    minYValue: number = 0; //default min Y value
-
-    constructor(public elementIdToRender: string, public matrix: Matrix) {
-        this.minYValue = Graphicator.calcularMinimo(matrix);
+    chartAPI: c3.ChartAPI;
+    // minYValue: number = 0; //default min Y value
+    config: GeneralConfig;
+    //DEFAULT C3 CONFIG FOR ALL CHART TYPES
+    static defaultC3Config: c3.ChartConfiguration = {
+        data: {
+            type: 'line', //default type
+            order: null
+        },
     }
 
-    static calcularMinimo(matrix:Matrix):number{
-        var max = Number.MIN_VALUE;
-        var minCellValue = Number.MAX_VALUE;
-        matrix.lines.forEach(function (line) {
-            line.cells.forEach(function (cell) {
-                if (cell && cell.valor) {
-                    max = Math.max(cell.valor, max);
-                    minCellValue = Math.min(cell.valor, minCellValue);
-                }
-            });
-        });
-        return (minCellValue < 0 ? minCellValue : (2 * minCellValue - max > 0 ? 2 * minCellValue - max : 0)); // acomoda el 0 automáticamente, si los datos útiles ocupan menos de la mitad cambio el 0        
+    constructor(userConfig: GeneralConfig) {
+        this.config.c3Config = bg.changing(Graphicator.defaultC3Config, userConfig.c3Config);
+        this.processGraphicatorConfig();
+        this.processValues();
     }
 
-    abstract buildDefaultChartParams(): c3.ChartConfiguration;
+    processGraphicatorConfig() {
+        this.config.c3Config.bindto = '#' + this.config.idElemParaBindear;
+    }
 
-    renderTabulation(userConfig: c3.ChartConfiguration) {
-        var finalConfig: c3.ChartConfiguration = bg.changing(bg.changing({ bindto: '#' + this.elementIdToRender }, this.buildDefaultChartParams()), userConfig || {});
-        c3.generate(finalConfig);
+    abstract processValues():any;
+
+    static render(config: GeneralConfig) {
+        var chart: Graphicator;
+        switch (config.tipo) {
+            case 'barra':
+                chart = new BarChartGraphicator(config);
+                break;
+            case 'torta':
+                chart = new PieChartGraphicator(config);
+                break;
+            default:
+                chart = new LineChartGraphicator(config);
+                break;
+        }
+        chart.renderTabulation();
+        return chart;
+    }
+
+    renderTabulation() {
+        this.chartAPI = c3.generate(this.config.c3Config);
+    }
+
+    getMatrix():Matrix{
+        return this.config.matrix;
     }
 };

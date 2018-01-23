@@ -1,24 +1,28 @@
-interface Cell {
+export interface Cell {
     valor: number;
 }
 
-interface Line {
+export interface Line {
     cells: Cell[];
+    titles: string[];
 }
 
-interface Value {
+export interface Value {
     label: string;
 }
 
-interface Var {
+export interface Var {
     values: Value[]
+    label: string;
 }
-interface Column {
+export interface Column {
     titles: string[];
 }
-interface Matrix {
+
+export interface Matrix {
     lines: Line[];
     lineVariables: any[];
+    columnVariables: any[];
     dataVariables: any[];
     vars: Var[];
     columns: Column[];
