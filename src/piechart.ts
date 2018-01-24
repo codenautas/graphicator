@@ -2,17 +2,20 @@ import { BaseChart } from './basechart';
 import { Utils } from './utils';
 import * as d3 from 'd3';
 import * as bg from 'best-globals';
+import { GeneralConfig } from './graph-configuration';
 
 export class PieChart extends BaseChart {
 
-    static defaultC3Config: c3.ChartConfiguration = bg.changing(BaseChart.defaultC3Config, {
-        data: {
-            type: 'pie', //default type
-        },
-        pie: {
-            label: {
-                format: function (value: any) {
-                    return d3.format('')(value);
+    static defaultConfig: GeneralConfig = bg.changing(BaseChart.defaultConfig, {
+        c3Config:{
+            data: {
+                type: 'pie', //default type
+            },
+            pie: {
+                label: {
+                    format: function (value: any) {
+                        return d3.format('')(value);
+                    }
                 }
             }
         }

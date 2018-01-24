@@ -12,6 +12,7 @@ export class LineChart extends SerialChart {
         let minYValue = this.calcularMinimo()
         this.config.c3Config.axis.y.min = minYValue; // line chart only
         if (minYValue > 0) this.config.c3Config.grid.y.lines[0].value = minYValue;
+        this.config.c3Config.data.type = this.config.apilado? 'area':'line';
     }
 
     private calcularMinimo(): number {

@@ -1,6 +1,3 @@
-
-
-
 /*
 * Logic for transformation from Tabulator toMatrix function data to c3js charts required data
 */
@@ -16,16 +13,20 @@ export abstract class BaseChart {
     config: GeneralConfig;
 
     // TODO: change this in order to allowing set defaults in non c3configs (apilado, um, tipo, etc)
-    static defaultC3Config: c3.ChartConfiguration = {
-        data: {
-            type: 'line', //default type
-            order: null
-        },
+    static defaultConfig: GeneralConfig = {
+        apilado: false,
+        um: '',
+        c3Config:{
+            data: {
+                type: 'line', //default type
+                order: null
+            }
+        }
     }
 
     constructor(userConfig: GeneralConfig) {
         let selfClass = <typeof BaseChart>this.constructor;
-        this.config = bg.changing(userConfig, { c3Config: selfClass.defaultC3Config });
+        this.config = bg.changing(userConfig, selfClass.defaultConfig);
         this.processGraphicatorConfig();
         this.processValues();
     }
@@ -35,8 +36,6 @@ export abstract class BaseChart {
     }
 
     abstract processValues(): any;
-
-
 
     renderTabulation() {
         this.chartAPI = c3.generate(this.config.c3Config);

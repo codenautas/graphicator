@@ -8,6 +8,7 @@ import { LineChart } from './linechart';
 import { BarChart } from './barchart';
 import { PieChart } from './piechart';
 import { BaseChart } from './basechart';
+import { PyramidChart } from './pyramidchart';
 
 export abstract class Graphicator {
     static render(config: GeneralConfig) {
@@ -15,6 +16,9 @@ export abstract class Graphicator {
         switch (config.tipo) {
             case 'barra':
                 chart = new BarChart(config);
+                break;
+            case 'piramide':
+                chart = new PyramidChart(config);
                 break;
             case 'torta':
                 chart = new PieChart(config);
