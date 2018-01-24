@@ -1,4 +1,5 @@
 import { SerialChart } from './serialchart';
+import { Line, Cell } from './matrix';
 
 export class LineChart extends SerialChart {
 
