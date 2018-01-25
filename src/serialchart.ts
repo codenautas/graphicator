@@ -1,5 +1,4 @@
 import * as bg from 'best-globals';
-import { Utils } from "./utils";
 
 import { Column, Line } from "./matrix";
 import { BaseChart } from "./basechart";
@@ -56,9 +55,9 @@ export abstract class SerialChart extends BaseChart {
     private getRowsForChart() {
         let be = this;
         const rowsForChart: any[] = this.getMatrix().lines.map((line: Line) => {
-            let lineTitle = Utils.getUniqueArrayElement(line.titles, 'matrix.lines[*].titles');
-            let lineVariable = Utils.getUniqueArrayElement(be.getMatrix().lineVariables, 'be.getMatrix().lineVariables');
-            let lineLabel = be.getMatrix().vars[lineVariable].values[lineTitle].label;
+            let lineTitle: string = line.titles.length > 0? line.titles[0]: '';
+            let lineVariable:string = be.getMatrix().lineVariables.length > 0? be.getMatrix().lineVariables[0]: '';
+            let lineLabel:string = (lineTitle && lineVariable)? be.getMatrix().vars[lineVariable].values[lineTitle].label:this.config.um;
             return [lineLabel].concat(line.cells.map((c: any) => (c && c.valor) || null));
         });
         return rowsForChart;

@@ -11,10 +11,10 @@ export interface Value {
     label: string;
 }
 
-export interface Var {
-    values: Value[]
-    label: string;
-}
+// export interface Var {
+//     values: Value[]
+//     label: string;
+// }
 export interface Column {
     titles: string[];
 }
@@ -24,6 +24,6 @@ export interface Matrix {
     lineVariables: any[];
     columnVariables: any[];
     dataVariables: any[];
-    vars: Var[];
+    vars: any;
     columns: Column[];
 }
