@@ -25,7 +25,9 @@ export abstract class BaseChart {
     }
 
     constructor(userConfig: GeneralConfig) {
-        let selfClass = <typeof BaseChart>this.constructor;
+        //what is it? typescript way to reference self classname dinamically,
+        //why did it? to reference static member of the child Class that is being initialized with this inherited constructor
+        let selfClass = <typeof BaseChart>this.constructor; 
         this.config = bg.changing(userConfig, selfClass.defaultConfig);
         this.processGraphicatorConfig();
         this.processValues();

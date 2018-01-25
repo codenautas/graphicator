@@ -49,8 +49,8 @@ export abstract class SerialChart extends BaseChart {
     }
 
     processValues(): any {
-        const xTitles = ['x'].concat(this.getMatrix().columns.map((c: Column) => c.titles.slice(-1)[0])); //Utils.getUniqueArrayElement(x.titles, 'matrix.columns[*].titles')));
-        this.config.c3Config.data.columns = [xTitles].concat(this.getRowsForChart());
+        const xTicks = ['x'].concat(this.getMatrix().columns.map((c: Column) => c.titles.slice(-1)[0])); //Utils.getUniqueArrayElement(x.titles, 'matrix.columns[*].titles')));
+        this.config.c3Config.data.columns = [xTicks].concat(this.getRowsForChart());
     }
 
     private getRowsForChart() {
