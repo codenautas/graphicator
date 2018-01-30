@@ -43,14 +43,22 @@ export abstract class BaseChart {
         if (matrix.columns.length < 1){
             throw 'la matriz no tiene ninguna columna';
         }
-        // if (matrix.lineVariables.length > 2){
-        //     throw 'la cantidad de lineVariables es mayor que 2';
-        // }
-        // if(matrix.columnVariables.length > 1) {
-        //     throw 'solo se puede tener 1 variable de columna';
-        // }
+        if (matrix.lineVariables.length > 2){
+            throw 'la cantidad de variables para fila es mayor que 2';
+        }
+        if(matrix.columnVariables.length > 2) {
+            throw 'la cantidad de variables para columna es mayor que 2';
+        }
+
+        if(this.getTotalVariables() > 3) {
+            throw 'la cantidad de variables es mayor que 3';
+        }
     }
     
+    getTotalVariables():number{
+        return this.getMatrix().lineVariables.length + this.getMatrix().columnVariables.length;
+    }
+
     abstract processValues(): any;
 
     renderTabulation() {
