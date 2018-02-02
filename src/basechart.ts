@@ -12,7 +12,6 @@ export abstract class BaseChart {
     chartAPI: c3.ChartAPI;
     config: GeneralConfig;
 
-    // TODO: change this in order to allowing set defaults in non c3configs (apilado, um, tipo, etc)
     static defaultConfig: GeneralConfig = {
         apilado: false,
         um: '',
@@ -25,13 +24,17 @@ export abstract class BaseChart {
     }
 
     constructor(userConfig: GeneralConfig) {
-        //what is it? typescript way to reference self classname dinamically,
-        //why did it? to reference static member of the child Class that is being initialized with this inherited constructor
-        let selfClass = <typeof BaseChart>this.constructor; 
-        this.config = bg.changing(selfClass.defaultConfig, userConfig);
+        this.config = this.getConfig(userConfig);
         this.validate();
         this.processGraphicatorConfig();
         this.processValues();
+    }
+
+    getConfig(userConfig:GeneralConfig): GeneralConfig {
+        //what is it? typescript way to reference self classname dinamically,
+        //why did it? to reference static member of the child Class that is being initialized with this inherited constructor
+        let selfClass = <typeof BaseChart>this.constructor; 
+        return bg.changing(selfClass.defaultConfig, userConfig);
     }
 
     processGraphicatorConfig() {
@@ -43,14 +46,14 @@ export abstract class BaseChart {
         if (matrix.columns.length < 1){
             throw 'la matriz no tiene ninguna columna';
         }
-        if (matrix.lineVariables.length > 2){
-            throw 'la cantidad de variables para fila es mayor que 2';
+        if (matrix.lineVariables.length > 1){
+            throw 'Solo se pueden graficar tabulados con una sola variable con ubicación "fil", intente poniendo en ubicación "z" alguna variable que tenga ubicación "fil"';
         }
-        if(matrix.columnVariables.length > 2) {
-            throw 'la cantidad de variables para columna es mayor que 2';
+        if(matrix.columnVariables.length > 1) {
+            throw 'Solo se pueden graficar tabulados con una sola variable con ubicación "col", intente poniendo en ubicación "z" alguna variable que tenga ubicación "col"';
         }
 
-        if(this.getTotalVariables() > 3) {
+        if(this.getTotalVariables() > 2) {
             throw 'la cantidad de variables es mayor que 3';
         }
     }
