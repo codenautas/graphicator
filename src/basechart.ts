@@ -14,7 +14,6 @@ export abstract class BaseChart {
 
     static defaultConfig: GeneralConfig = {
         apilado: false,
-        um: '',
         c3Config:{
             data: {
                 type: 'line', //default type

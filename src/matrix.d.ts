@@ -21,8 +21,8 @@ export interface Column {
 
 export interface Matrix {
     lines: Line[];
-    lineVariables: any[];
-    columnVariables: any[];
+    lineVariables: string[];
+    columnVariables: string[];
     dataVariables: any[];
     vars: any;
     columns: Column[];

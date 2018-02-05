@@ -48,16 +48,19 @@ export abstract class SerialChart extends BaseChart {
     }
 
     processValues(): any {
-        const xTicks = ['x'].concat(this.getMatrix().columns.map((c: Column) => c.titles.slice(-1)[0])); //Utils.getUniqueArrayElement(x.titles, 'matrix.columns[*].titles')));
+        let mtx = this.getMatrix();
+        let colVarValues = mtx.vars[mtx.columnVariables[0]].values;
+        const xTicks = ['x'].concat(mtx.columns.map((c: Column) => colVarValues[c.titles.slice(-1)[0]].label)); //Utils.getUniqueArrayElement(x.titles, 'matrix.columns[*].titles')));
         this.config.c3Config.data.columns = [xTicks].concat(this.getRowsForChart());
     }
 
     private getRowsForChart() {
-        let be = this;
+        let mtx = this.getMatrix();
         const rowsForChart: any[] = this.getMatrix().lines.map((line: Line) => {
-            let lineTitle: string = line.titles.length > 0? line.titles[0]: '';
-            let lineVariable:string = be.getMatrix().lineVariables.length > 0? be.getMatrix().lineVariables[0]: '';
-            let lineLabel:string = (lineTitle && lineVariable)? be.getMatrix().vars[lineVariable].values[lineTitle].label:this.config.um;
+            let lineLabel: string = (line.titles.length && mtx.lineVariables.length) 
+                ? mtx.vars[mtx.lineVariables[0]].values[line.titles[0]].label 
+                : this.config.um;
+
             return [lineLabel].concat(line.cells.map((c: any) => (c && c.valor) || null));
         });
         return rowsForChart;
