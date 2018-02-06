@@ -35,16 +35,11 @@ export class PyramidChart extends BarChart {
     }
 
     processValues() {
-        this.revertOrder();
         this.changeVariableSign();
         super.processValues();
     }
 
-    private revertOrder(): void {
-        //revert columns and cells to ascendent piramid
-        this.config.matrix.columns.reverse();
-        this.config.matrix.lines.forEach(line => line.cells.reverse());
-    }
+  
 
     // change cell.valor sign to choose pyramid side for each category
     changeVariableSign(): void {

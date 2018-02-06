@@ -20,6 +20,7 @@ export abstract class SerialChart extends BaseChart {
                     padding: { bottom: 0 },
                 },
                 x: {
+                    type: 'category',
                     tick: {
                         //si una columna tiene mas de un título tomo el primero
                         // values: this.getMatrix().columns.map((x: any) => x.titles.slice(-1)[0])
@@ -48,6 +49,7 @@ export abstract class SerialChart extends BaseChart {
     }
 
     processValues(): any {
+        this.revertOrder();
         let mtx = this.getMatrix();
         let colVarValues = mtx.vars[mtx.columnVariables[0]].values;
         const xTicks = ['x'].concat(mtx.columns.map((c: Column) => colVarValues[c.titles.slice(-1)[0]].label)); //Utils.getUniqueArrayElement(x.titles, 'matrix.columns[*].titles')));
@@ -65,4 +67,10 @@ export abstract class SerialChart extends BaseChart {
         });
         return rowsForChart;
     }
+    private revertOrder(): void {
+        //revert columns and cells to ascendent piramid
+        this.config.matrix.columns.reverse();
+        this.config.matrix.lines.forEach(line => line.cells.reverse());
+    }
+
 }
