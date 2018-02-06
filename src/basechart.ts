@@ -45,11 +45,13 @@ export abstract class BaseChart {
     private processColors() {
         let mtx = this.getMatrix();
         if (mtx.lineVariables.length) {
-            this.config.matrix.vars[mtx.lineVariables[0]].values.forEach(category => {
+            let lineVarCategories = this.config.matrix.vars[mtx.lineVariables[0]].values;
+            for (let catId in lineVarCategories) {
+                let category = lineVarCategories[catId];
                 if (category.color) {
                     this.config.c3Config.data.colors[category.label] = category.color;
                 }
-            });
+            }
         }
     }
 
