@@ -3,6 +3,7 @@ import * as bg from 'best-globals';
 import { Column, Line } from "./matrix";
 import { BaseChart } from "./basechart";
 import { GeneralConfig } from './graph-configuration';
+import * as d3 from 'd3';
 
 /*
 * Common construction for all "serial" charts (line, bar, stacked bars, etc),  (for example pie chart isn't a "serial" chart)
@@ -18,6 +19,12 @@ export abstract class SerialChart extends BaseChart {
             axis: {
                 y: {
                     padding: { bottom: 0 },
+                    tick:{
+                        format: function(d:any) {
+                            //if number show only two decimals
+                            return (typeof d == 'number')? d3.round(d,2): d;
+                        }
+                    }
                 },
                 x: {
                     type: 'category',
