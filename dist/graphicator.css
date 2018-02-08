@@ -4,7 +4,7 @@
 
 .c3-ygrid-line.zeroAxis line{
     stroke: black;
-    stroke-width: 1 px;
+    stroke-width: 1px;
 }
 
 .c3-axis.c3-axis-x path{

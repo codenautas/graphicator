@@ -13,7 +13,7 @@ export class PyramidChart extends BarChart {
             },
             bar: {
                 width: {
-                    ratio: '0.95'
+                    ratio: '0.8'
                 }
             },
             axis: {
