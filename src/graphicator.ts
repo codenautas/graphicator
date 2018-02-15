@@ -9,6 +9,8 @@ import { BarChart } from './barchart';
 import { PieChart } from './piechart';
 import { BaseChart } from './basechart';
 import { PyramidChart } from './pyramidchart';
+import { Matrix } from '.';
+import { Line, Cell } from './matrix';
 
 export abstract class Graphicator {
     static render(config: GeneralConfig) {
@@ -29,5 +31,19 @@ export abstract class Graphicator {
         }
         chart.renderTabulation();
         return chart;
+    }
+
+    static calcularMinMax(matrix: Matrix): any {
+        var max = Number.MIN_VALUE;
+        var minCellVal = Number.MAX_VALUE;
+        matrix.lines.forEach(function (line: Line) {
+            line.cells.forEach(function (cell: Cell) {
+                if (cell && cell.valor && !isNaN(cell.valor)) {
+                    max = Math.max(cell.valor, max);
+                    minCellVal = Math.min(cell.valor, minCellVal);
+                }
+            });
+        });
+        return {min:minCellVal, max:max};
     }
 };

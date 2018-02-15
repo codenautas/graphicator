@@ -10,6 +10,11 @@ import * as d3 from 'd3';
  */
 export abstract class SerialChart extends BaseChart {
 
+    static yTickFormat(d:any){
+        //if number show only two decimals
+        return isNaN(d)? d: d3.round(d,1);
+    }
+
     static defaultConfig: GeneralConfig = bg.changing(BaseChart.defaultConfig, {
         c3Config: {
             data: {
@@ -20,10 +25,7 @@ export abstract class SerialChart extends BaseChart {
                 y: {
                     padding: { bottom: 0 },
                     tick:{
-                        format: function(d:any) {
-                            //if number show only two decimals
-                            return (typeof d == 'number')? d3.round(d,2): d;
-                        }
+                        format: (d:any) => SerialChart.yTickFormat(d)
                     }
                 },
                 x: {
@@ -69,13 +71,13 @@ export abstract class SerialChart extends BaseChart {
             let lineLabel: string = (line.titles.length && mtx.lineVariables.length) 
                 ? mtx.vars[mtx.lineVariables[0]].values[line.titles[0]].label 
                 : this.config.um;
-
             return [lineLabel].concat(line.cells.map((c: any) => (c && c.valor) || null));
         });
         return rowsForChart;
     }
+
     private revertOrder(): void {
-        //revert columns and cells to ascendent piramid
+        //revert columns and cells to ascendent order
         this.config.matrix.columns.reverse();
         this.config.matrix.lines.forEach(line => line.cells.reverse());
     }

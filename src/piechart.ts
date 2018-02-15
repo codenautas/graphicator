@@ -14,9 +14,7 @@ export class PieChart extends BaseChart {
             },
             pie: {
                 label: {
-                    format: function (value: any) {
-                        return d3.format('')(value);
-                    }
+                    format: (value: any) => d3.format('')(value)
                 }
             }
         }

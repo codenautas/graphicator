@@ -2,8 +2,12 @@ import * as bg from 'best-globals';
 import { GeneralConfig } from './graph-configuration';
 import { BarChart } from './barchart';
 import { Utils } from './utils';
+import { SerialChart } from '.';
 
 export class PyramidChart extends BarChart {
+    static yTickFormat(d: any) {
+        return isNaN(d) ? d : Math.abs(SerialChart.yTickFormat(d));
+    }
 
     static defaultConfig: GeneralConfig = bg.changing(BarChart.defaultConfig, {
         apilado: true,
@@ -19,11 +23,10 @@ export class PyramidChart extends BarChart {
             axis: {
                 rotated: true,
                 y: {
+                    padding: { bottom: 100 },
                     tick: {
-                        format: function (d: number) {
-                            return (parseInt(d.toString()) === d) ? Math.abs(d) : null;
-                        }
-                    },
+                        format: (d: number) => PyramidChart.yTickFormat(d)
+                    }
                 }
             }
         }
@@ -38,8 +41,6 @@ export class PyramidChart extends BarChart {
         this.changeVariableSign();
         super.processValues();
     }
-
-  
 
     // change cell.valor sign to choose pyramid side for each category
     changeVariableSign(): void {
