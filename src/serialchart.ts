@@ -23,7 +23,7 @@ export abstract class SerialChart extends BaseChart {
             },
             axis: {
                 y: {
-                    padding: { bottom: 0 },
+                    padding: { bottom: 0, top:0 },
                     tick:{
                         format: (d:any) => SerialChart.yTickFormat(d)
                     }

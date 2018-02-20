@@ -1,10 +1,19 @@
+import * as bg from 'best-globals';
+
 import { SerialChart } from './serialchart';
-import { Graphicator } from '.';
+import { Graphicator, GeneralConfig } from '.';
 
 export class LineChart extends SerialChart {
 
-    // static defaultC3Config: c3.ChartConfiguration = bg.changing(SerialChart.defaultC3Config, {
-    // })
+    static defaultConfig: GeneralConfig = bg.changing(SerialChart.defaultConfig, {
+        c3Config: {
+            axis: {
+                y: {
+                    padding: { bottom: 0, top: 25 }
+                }
+            }
+        }
+    });
 
     processGraphicatorConfig(){
         super.processGraphicatorConfig()
