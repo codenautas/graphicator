@@ -14,7 +14,7 @@ export abstract class BaseChart {
         c3Config: {
             data: {
                 type: 'line', //default type
-                colors: {},
+                colors: { '': '#1f77b4' }, //default color
                 order: null
             }
         }
@@ -36,6 +36,7 @@ export abstract class BaseChart {
 
     processGraphicatorConfig() {
         this.config.c3Config.bindto = '#' + this.config.idElemParaBindear;
+        if (!this.config.matrix.lineVariables.length) { this.config.c3Config.legend = { show: false } }
         this.processColors();
     }
 

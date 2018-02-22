@@ -24,7 +24,7 @@ export class PyramidChart extends BarChart {
                 rotated: true,
                 y: {
                     //hack porque ahora se calcula mal el min y max para los apilados
-                    padding: { bottom: 100, top: 100 },
+                    padding: { bottom: 75, top: 75 },
                     tick: {
                         format: (d: number) => PyramidChart.yTickFormat(d)
                     }
@@ -39,6 +39,7 @@ export class PyramidChart extends BarChart {
     }
 
     processValues() {
+        this.revertOrder();
         this.changeVariableSign();
         super.processValues();
     }
