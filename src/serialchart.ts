@@ -57,12 +57,17 @@ export abstract class SerialChart extends BaseChart {
         this.config.c3Config.axis.y.label = { position: 'outer-middle', text: this.config.um };
     }
 
+    // TODO: try with Row Oriented Data instead of Column oriented (see getRowsForChart method)
     processValues(): any {
-        if (this.config.matrix.columnVariables[0] == 'annio' && !this.config.c3Config.axis.rotated) { this.revertOrder() }//for years we revert data order
+        //for years in rotated charts we revert data order
+        if (this.getMatrix().columnVariables[0] == 'annio' && !this.config.c3Config.axis.rotated) { this.revertOrder() }
+        this.config.c3Config.data.columns = [this.getXTicks()].concat(this.getRowsForChart());
+    }
+    
+    private getXTicks(): string[]{
         let mtx = this.getMatrix();
         let colVarValues = mtx.vars[mtx.columnVariables[0]].values;
-        const xTicks = ['x'].concat(mtx.columns.map((c: Column) => colVarValues[c.titles.slice(-1)[0]].label)); //Utils.getUniqueArrayElement(x.titles, 'matrix.columns[*].titles')));
-        this.config.c3Config.data.columns = [xTicks].concat(this.getRowsForChart());
+        return ['x'].concat(mtx.columns.map((c: Column) => colVarValues[c.titles[c.titles.length-1]].label)); //Utils.getUniqueArrayElement(x.titles, 'matrix.columns[*].titles')));
     }
 
     // TODO: think in data by rows or json instead of by columns
@@ -70,7 +75,7 @@ export abstract class SerialChart extends BaseChart {
     // http://c3js.org/samples/data_json.html
     private getRowsForChart() {
         let mtx = this.getMatrix();
-        const rowsForChart: any[] = this.getMatrix().lines.map((line: Line) => {
+        const rowsForChart: any[] = mtx.lines.map((line: Line) => {
             let lineLabel: string = (line.titles.length && mtx.lineVariables.length)
                 ? mtx.vars[mtx.lineVariables[0]].values[line.titles[0]].label
                 : this.config.um;
@@ -84,5 +89,4 @@ export abstract class SerialChart extends BaseChart {
         this.config.matrix.columns.reverse();
         this.config.matrix.lines.forEach(line => line.cells.reverse());
     }
-
 }

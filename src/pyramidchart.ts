@@ -3,6 +3,7 @@ import { GeneralConfig } from './graph-configuration';
 import { BarChart } from './barchart';
 import { Utils } from './utils';
 import { SerialChart } from '.';
+import { Line } from './matrix';
 
 export class PyramidChart extends BarChart {
     static yTickFormat(d: any) {
@@ -49,12 +50,10 @@ export class PyramidChart extends BarChart {
         let mtx = this.getMatrix();
         let lineVar = Utils.getUniqueArrayElement(mtx.lineVariables, 'lineVariables[*]');
         let varValues = mtx.vars[lineVar].values;
-
+        delete varValues.null;
         for (let catName in varValues) {
-            mtx.lines.filter(line => line.titles.indexOf(catName) > -1)
-                .forEach(line =>
-                    line.cells.forEach(c => c.valor *= varValues[catName].signo_piramide)
-                );
+            let catLine = mtx.lines.find((line:Line) => line.titles.indexOf(catName) > -1);
+            catLine.cells.forEach(c => c.valor *= varValues[catName].signo_piramide);
         }
     }
 }

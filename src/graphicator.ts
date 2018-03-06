@@ -33,6 +33,7 @@ export abstract class Graphicator {
         return chart;
     }
 
+    // TODO: Esto no debería estar en tabulator?
     static calcularMinMax(matrix: Matrix): any {
         var max = Number.MIN_VALUE;
         var minCellVal = Number.MAX_VALUE;

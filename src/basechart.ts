@@ -43,7 +43,7 @@ export abstract class BaseChart {
     private processColors() {
         let mtx = this.getMatrix();
         if (mtx.lineVariables.length) {
-            let lineVarCategories = this.config.matrix.vars[mtx.lineVariables[0]].values;
+            let lineVarCategories = mtx.vars[mtx.lineVariables[0]].values;
             for (let catId in lineVarCategories) {
                 let category = lineVarCategories[catId];
                 if (category.color) {
@@ -66,7 +66,7 @@ export abstract class BaseChart {
         }
 
         if (this.getTotalVariables() > 2) {
-            throw 'la cantidad de variables es mayor que 3';
+            throw 'la cantidad de variables es mayor que 2';
         }
     }
 

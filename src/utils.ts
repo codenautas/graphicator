@@ -1,3 +1,4 @@
+// TODO: remove these methods, instead do a good validation of matrix at the begining (before process data and rendering)
 // TODO: move to "utils library"
 export class Utils {
     static validateOneElementArray(arrayVar: any[], varName: string) {
