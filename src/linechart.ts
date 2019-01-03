@@ -4,12 +4,11 @@ import { SerialChart } from './serialchart';
 import { Graphicator, GeneralConfig } from '.';
 
 export class LineChart extends SerialChart {
-
     static defaultConfig: GeneralConfig = bg.changing(SerialChart.defaultConfig, {
         c3Config: {
             axis: {
                 y: {
-                    // padding: { bottom: 0, top: 25 }
+                    padding: { bottom: 0, top: 25 }
                 }
             }
         }
