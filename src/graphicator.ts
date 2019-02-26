@@ -41,7 +41,7 @@ export abstract class Graphicator {
         );
         return {
             min: Math.min(...matrixCellValues, Number.MAX_VALUE),
-            max: Math.max(...matrixCellValues, Number.MIN_VALUE)
+            max: Math.max(...matrixCellValues, -Number.MAX_VALUE)
         };
     }
 };
