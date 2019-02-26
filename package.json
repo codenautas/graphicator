@@ -14,11 +14,14 @@
     }
   ],
   "dependencies": {
-    "@types/c3": "~0.4.51",
     "best-globals": "~0.10.4",
-    "c3": "~0.4.18"
+    "c3": "~0.4.18",
+    "canvas-toBlob": "1.0.0",
+    "file-saver": "2.0.1"
   },
   "devDependencies": {
+    "@types/c3": "~0.4.51",
+    "@types/file-saver": "^2.0.0",
     "mocha": "~5.0.0",
     "expect.js": "~0.3.1",
     "typescript": "^2.6.2",
